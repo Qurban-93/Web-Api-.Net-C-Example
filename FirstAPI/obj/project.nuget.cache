@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "kAAuHM6U1zGJol7sx14B8GC1VDRKbhUNVhSEaeptfNJCoQjk/2TNF83SXX7POfrP/eddArcUmfoo2+uszpT4GQ==",
+  "dgSpecHash": "w0avXMXkiHk14rJwjdS8TN+FW37x/gaCNF/HV4PCbUuW8w9GL3kyBQ0ZIKa5raQF/cncbBZNKIOsgvlYZDEMvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\FirstAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hp\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.2\\microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

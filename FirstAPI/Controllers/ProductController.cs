@@ -1,4 +1,5 @@
 ﻿using FirstAPI.Data.DAL;
+using FirstAPI.Dtos.ProductDtos;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,24 +18,58 @@ namespace FirstAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int page,int take)
         {
-            return Ok(_context.Products.ToList());
+            var Query = _context.Products.Where(p => !p.IsDelete);
+
+            List<Product> products = Query.ToList();
+            ProductListDto productListDto = new ProductListDto();
+            productListDto.TotalCount = Query.Count();
+            productListDto.Items = products.Skip((page-1)*take)
+                .Select(p => new ProductListItemDto
+            {
+                Name = p.Name,
+                Price = p.Price,
+                SalePrice = p.SalePrice,
+                CreateDate = p.CreateDate,
+                EditDate = p.EditDate,
+
+            }).ToList();
+            return Ok(productListDto);
         }
+
+
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetOne(int? id)
         {
             if (id == null || id == 0) return StatusCode(StatusCodes.Status404NotFound);
-            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            var product = _context.Products
+                .Where(p => !p.IsDelete)
+                .FirstOrDefault(p => p.Id == id);
             if (product == null) return StatusCode(StatusCodes.Status404NotFound);
-            return StatusCode(StatusCodes.Status200OK, product);
+            ProductReturnDto productReturnDto = new ProductReturnDto();
+            productReturnDto.Name = product.Name;
+            productReturnDto.Price = product.Price;
+            productReturnDto.SalePrice = product.SalePrice;
+            productReturnDto.CreateDate = product.CreateDate;
+            productReturnDto.EditDate = product.EditDate;
+            return StatusCode(StatusCodes.Status200OK, productReturnDto);
         }
 
         [HttpPost]
-        public IActionResult AddProduct(Product? product)
+        public IActionResult AddProduct(ProductCreateDto productCreateDto)
         {
-            if (product == null) return BadRequest();
+            if (productCreateDto == null) return NotFound();
+            Product product = new();
+            product.Name = productCreateDto.Name;
+            product.Price = productCreateDto.Price;
+            product.SalePrice = productCreateDto.SalePrice;
+            product.IsActive = true;
+            product.IsDelete = productCreateDto.IsDeleted;
+            product.CreateDate = DateTime.Now;
+
+
             _context.Products.Add(product);
             _context.SaveChanges();
 
@@ -45,7 +80,7 @@ namespace FirstAPI.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
-            var existProd = _context.Products.FirstOrDefault(p=>p.Id == id);
+            var existProd = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existProd == null) return NotFound();
             _context.Products.Remove(existProd);
             _context.SaveChanges();
@@ -53,14 +88,15 @@ namespace FirstAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int? id ,Product product)
+        public IActionResult Update(int? id, ProductUpdateDto productUpdateDto)
         {
-            if(product == null || id == null || id == 0) return BadRequest();
+            if (productUpdateDto == null || id == null || id == 0) return BadRequest();
             var existProd = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existProd == null) return NotFound();
-            existProd.Name = product.Name;
-            existProd.Price = product.Price;
-            existProd.IsActive = product.IsActive;
+            existProd.Name = productUpdateDto.Name;
+            existProd.Price = productUpdateDto.Price;
+            existProd.SalePrice = productUpdateDto.SalePrice;
+            existProd.IsDelete = productUpdateDto.isDelete;
             _context.SaveChanges();
             return StatusCode(StatusCodes.Status204NoContent);
         }
@@ -68,8 +104,8 @@ namespace FirstAPI.Controllers
         [HttpPatch]
         public IActionResult ChangeStatus(int? id, bool status)
         {
-            if(id == null|| id == 0) return BadRequest();
-            var existProd = _context.Products.FirstOrDefault(p=>p.Id == id);
+            if (id == null || id == 0) return BadRequest();
+            var existProd = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existProd == null) return NotFound();
             existProd.IsActive = status;
             _context.SaveChanges();
