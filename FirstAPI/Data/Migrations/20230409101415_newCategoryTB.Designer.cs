@@ -4,6 +4,7 @@ using FirstAPI.Data.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstAPI.Data.Migrations
 {
     [DbContext(typeof(WebAppDbContext))]
-    partial class WebAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230409101415_newCategoryTB")]
+    partial class newCategoryTB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +34,10 @@ namespace FirstAPI.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
