@@ -1,4 +1,5 @@
 ﻿using FirstAPI.Data.DAL;
+using FirstAPI.Dtos;
 using FirstAPI.Dtos.CategoryDtos;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -35,8 +36,8 @@ namespace FirstAPI.Controllers
         public IActionResult GetAllCategory()
         {
             var query = _context.Categories.Where(c => !c.IsDeleted);
-            CategoryListDto categoryListDto = new();
-            categoryListDto.Items = query.Select(c=>new CategoryReturnDto()
+            ListDto<CategoryReturnDto> categoryListDto = new();
+            categoryListDto.List = query.Select(c=>new CategoryReturnDto()
             {
                 CategoryDescription= c.CategoryDescription,
                 CategoryName= c.CategoryName,

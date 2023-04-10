@@ -1,4 +1,5 @@
 ﻿using FirstAPI.Data.DAL;
+using FirstAPI.Dtos;
 using FirstAPI.Dtos.ProductDtos;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.Http;
@@ -23,9 +24,9 @@ namespace FirstAPI.Controllers
             var Query = _context.Products.Where(p => !p.IsDelete);
 
             List<Product> products = Query.ToList();
-            ProductListDto productListDto = new ProductListDto();
+            ListDto<ProductListItemDto> productListDto = new();
             productListDto.TotalCount = Query.Count();
-            productListDto.Items = products.Skip((page-1)*take)
+            productListDto.List = products.Skip((page-1)*take)
                 .Select(p => new ProductListItemDto
             {
                 Name = p.Name,
