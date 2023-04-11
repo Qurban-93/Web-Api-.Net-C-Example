@@ -6,6 +6,7 @@ namespace FirstAPI.Dtos.CategoryDtos
     {
         public string? CategoryName { get; set; }
         public string? CategoryDescription { get; set; }
+        public IFormFile Photo { get; set; }
 
         
     }

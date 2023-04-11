@@ -6,8 +6,10 @@ namespace FirstAPI.Dtos.ProductDtos
     {
         public string? Name { get; set; }
         public double Price { get; set; }
+        public IFormFile? Photo { get; set; }
         public double? SalePrice { get; set; }
         public bool IsDeleted { get; set; }
+
 
     }
 
@@ -16,7 +18,7 @@ namespace FirstAPI.Dtos.ProductDtos
         public ProductCreateDtoValidator()
         {
             RuleFor(p => p.Name).
-                MinimumLength(10).WithMessage("Minimum uzunluq 5 simvol")
+                MinimumLength(5).WithMessage("Minimum uzunluq 5 simvol")
                 .MaximumLength(30).WithMessage("uzunluq 50 simvoldan cox ola bilmez!")
                 .NotNull().WithMessage("bosh olmaz");
             RuleFor(p => p.SalePrice)

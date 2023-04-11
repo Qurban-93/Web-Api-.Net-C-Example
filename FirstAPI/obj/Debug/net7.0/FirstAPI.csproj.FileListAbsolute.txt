@@ -76,3 +76,4 @@ C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\runtimes\w
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FirstAPI.staticwebassets.runtime.json

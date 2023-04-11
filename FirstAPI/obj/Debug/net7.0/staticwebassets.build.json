@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "oMPQ3hOi4HWVQk6nCb1ylyTZ6WKL60rttaYBBsOWzWY=",
+  "Hash": "dfaaVrD9G3FljuEE81dvSptWuPqfsERkzNAXXgm9TOg=",
   "Source": "FirstAPI",
   "BasePath": "_content/FirstAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "FirstAPI\\wwwroot",
+      "Source": "FirstAPI",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\",
+      "BasePath": "_content/FirstAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\img\\9b790574-5c72-4b3e-8054-10f68651c31aGurban_Gurbanov-481x620.jpg",
+      "SourceId": "FirstAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\",
+      "BasePath": "_content/FirstAPI",
+      "RelativePath": "img/9b790574-5c72-4b3e-8054-10f68651c31aGurban_Gurbanov-481x620.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\9b790574-5c72-4b3e-8054-10f68651c31aGurban_Gurbanov-481x620.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\img\\istockphoto-694801740-612x612.jpg",
+      "SourceId": "FirstAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\",
+      "BasePath": "_content/FirstAPI",
+      "RelativePath": "img/istockphoto-694801740-612x612.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\istockphoto-694801740-612x612.jpg"
+    }
+  ]
 }

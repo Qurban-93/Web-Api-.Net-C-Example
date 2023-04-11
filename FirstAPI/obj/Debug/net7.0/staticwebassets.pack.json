@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\img\\9b790574-5c72-4b3e-8054-10f68651c31aGurban_Gurbanov-481x620.jpg",
+      "PackagePath": "staticwebassets\\img\\9b790574-5c72-4b3e-8054-10f68651c31aGurban_Gurbanov-481x620.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\Desktop\\HomeTestMyself\\FirstAPI\\FirstAPI\\wwwroot\\img\\istockphoto-694801740-612x612.jpg",
+      "PackagePath": "staticwebassets\\img\\istockphoto-694801740-612x612.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.FirstAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.FirstAPI.props",
+      "PackagePath": "build\\FirstAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.FirstAPI.props",
+      "PackagePath": "buildMultiTargeting\\FirstAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.FirstAPI.props",
+      "PackagePath": "buildTransitive\\FirstAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

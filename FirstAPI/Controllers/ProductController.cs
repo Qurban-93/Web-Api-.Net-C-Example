@@ -1,6 +1,8 @@
 ﻿using FirstAPI.Data.DAL;
 using FirstAPI.Dtos;
+using FirstAPI.Dtos.CategoryDtos;
 using FirstAPI.Dtos.ProductDtos;
+using FirstAPI.Extentions;
 using FirstAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,30 +14,38 @@ namespace FirstAPI.Controllers
     public class ProductController : ControllerBase
     {
         private readonly WebAppDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(WebAppDbContext context)
+        public ProductController(WebAppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
-        public IActionResult GetAll(int page,int take)
+        public IActionResult GetAll(int page, int take, string? search)
         {
-            var Query = _context.Products.Where(p => !p.IsDelete);
+            var query = _context.Products.Where(p => !p.IsDelete);
 
-            List<Product> products = Query.ToList();
-            ListDto<ProductListItemDto> productListDto = new();
-            productListDto.TotalCount = Query.Count();
-            productListDto.List = products.Skip((page-1)*take)
-                .Select(p => new ProductListItemDto
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                Name = p.Name,
-                Price = p.Price,
-                SalePrice = p.SalePrice,
-                CreateDate = p.CreateDate,
-                EditDate = p.EditDate,
+                query = query.Where(p => p.Name.Contains(search));
+            }
 
-            }).ToList();
+            List<Product> products = query.ToList();
+            ListDto<ProductListItemDto> productListDto = new();
+            productListDto.TotalCount = query.Count();
+            productListDto.List = products.Skip((page - 1) * take)
+                .Select(p => new ProductListItemDto
+                {
+                    Name = p.Name,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    SalePrice = p.SalePrice,
+                    CreateDate = p.CreateDate,
+                    EditDate = p.EditDate,
+
+                }).ToList();
             return Ok(productListDto);
         }
 
@@ -53,19 +63,25 @@ namespace FirstAPI.Controllers
             productReturnDto.Name = product.Name;
             productReturnDto.Price = product.Price;
             productReturnDto.SalePrice = product.SalePrice;
+            productReturnDto.ImageUrl = product.ImageUrl;
             productReturnDto.CreateDate = product.CreateDate;
             productReturnDto.EditDate = product.EditDate;
             return StatusCode(StatusCodes.Status200OK, productReturnDto);
         }
 
         [HttpPost]
-        public IActionResult AddProduct(ProductCreateDto productCreateDto)
+        public IActionResult AddProduct([FromForm] ProductCreateDto productCreateDto)
         {
             if (productCreateDto == null) return NotFound();
+
+            if (productCreateDto.Photo.CheckSize(2)) return BadRequest("Size bigger than 2mbgt");
+            if (!productCreateDto.Photo.CheckType()) return BadRequest("Not image !");
+
             Product product = new();
             product.Name = productCreateDto.Name;
             product.Price = productCreateDto.Price;
             product.SalePrice = productCreateDto.SalePrice;
+            product.ImageUrl = productCreateDto.Photo.SaveImage("img", _webHostEnvironment);
             product.IsActive = true;
             product.IsDelete = productCreateDto.IsDeleted;
             product.CreateDate = DateTime.Now;
@@ -83,6 +99,14 @@ namespace FirstAPI.Controllers
             if (id == null || id == 0) return NotFound();
             var existProd = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existProd == null) return NotFound();
+            if (existProd.ImageUrl != null)
+            {
+                string fullPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", existProd.ImageUrl);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }                          
+            }
             _context.Products.Remove(existProd);
             _context.SaveChanges();
             return StatusCode(StatusCodes.Status204NoContent);
@@ -94,6 +118,20 @@ namespace FirstAPI.Controllers
             if (productUpdateDto == null || id == null || id == 0) return BadRequest();
             var existProd = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existProd == null) return NotFound();
+            if(productUpdateDto.Photo!= null)
+            {
+                if (productUpdateDto.Photo.CheckSize(2)) return BadRequest("Size bigger than 2mbgt");
+                if (!productUpdateDto.Photo.CheckType()) return BadRequest("Not image !");
+
+                string fullPath = Path.Combine(_webHostEnvironment.WebRootPath, "img", existProd.ImageUrl);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+                existProd.ImageUrl = productUpdateDto.Photo.SaveImage("img", _webHostEnvironment);
+            }
+
+
             existProd.Name = productUpdateDto.Name;
             existProd.Price = productUpdateDto.Price;
             existProd.SalePrice = productUpdateDto.SalePrice;
