@@ -1,4 +1,5 @@
-﻿using FirstAPI.Data.DAL;
+﻿using AutoMapper;
+using FirstAPI.Data.DAL;
 using FirstAPI.Dtos;
 using FirstAPI.Dtos.CategoryDtos;
 using FirstAPI.Extentions;
@@ -6,6 +7,7 @@ using FirstAPI.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirstAPI.Controllers
 {
@@ -15,11 +17,13 @@ namespace FirstAPI.Controllers
     {
         private readonly WebAppDbContext _context;
         private readonly IWebHostEnvironment _environment;
+        private readonly IMapper _mapper;
 
-        public CategoryController(WebAppDbContext context, IWebHostEnvironment webHostEnvironment)
+        public CategoryController(WebAppDbContext context, IWebHostEnvironment webHostEnvironment, IMapper mapper)
         {
             _context = context;
             _environment = webHostEnvironment;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -102,11 +106,14 @@ namespace FirstAPI.Controllers
         { 
             if(id ==null || id==0) return NotFound();
 
-            var category = _context.Categories.FirstOrDefault(c=>c.Id== id);
+            var category = _context.Categories.Include(c=>c.Products)
+                .FirstOrDefault(c=>c.Id== id);
             if(category == null) return NotFound();
-            CategoryReturnDto categoryReturnDto = new();
-            categoryReturnDto.CategoryName = category.CategoryName;
-            categoryReturnDto.CategoryDescription= category.CategoryDescription;
+            CategoryReturnDto categoryReturnDto = _mapper.Map<CategoryReturnDto>(category);
+
+            //CategoryReturnDto categoryReturnDto = new();
+            //categoryReturnDto.CategoryName = category.CategoryName;
+            //categoryReturnDto.CategoryDescription= category.CategoryDescription;
 
             return Ok(categoryReturnDto);
         

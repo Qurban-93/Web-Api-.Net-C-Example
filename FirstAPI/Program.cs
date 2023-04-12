@@ -1,6 +1,7 @@
 using FirstAPI.Data.DAL;
 using FirstAPI.Dtos.CategoryDtos;
 using FirstAPI.Dtos.ProductDtos;
+using FirstAPI.Profile;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<WebAppDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("default")));
+builder.Services.AddAutoMapper(option =>
+{
+    option.AddProfile(new MapProfile());
+});
 
 
 var app = builder.Build();

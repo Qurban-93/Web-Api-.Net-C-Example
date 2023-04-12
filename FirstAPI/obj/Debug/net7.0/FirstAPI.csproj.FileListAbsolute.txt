@@ -77,3 +77,5 @@ C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentVali
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FirstAPI.staticwebassets.runtime.json
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
