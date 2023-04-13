@@ -1,11 +1,12 @@
 ﻿using FirstAPI.Data.Configurations;
 using FirstAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FirstAPI.Data.DAL
 {
-    public class WebAppDbContext : DbContext
-    {
+    public class WebAppDbContext : IdentityDbContext<AppUser>
+    { 
         public WebAppDbContext(DbContextOptions options) : base(options) { }
         
         public DbSet<Product> Products { get; set; }

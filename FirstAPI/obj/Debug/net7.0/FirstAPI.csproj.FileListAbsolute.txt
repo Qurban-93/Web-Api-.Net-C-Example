@@ -79,3 +79,10 @@ C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FluentVali
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\FirstAPI.staticwebassets.runtime.json
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Hp\Desktop\HomeTestMyself\FirstAPI\FirstAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
